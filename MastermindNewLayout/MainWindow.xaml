@@ -84,11 +84,11 @@
             </MenuItem>
             <MenuItem x:Name="settingsMenu" Header="Instellingen">
                 <MenuItem x:Name="attemptsAmountmenu" Header="Aantal pogingen">
-                    <Slider x:Name="maxAttemptSlider" Value="10" TickPlacement="BottomRight" TickFrequency="1" Minimum="3" Maximum="20" Width="100" AutoToolTipPlacement="TopLeft" ValueChanged="maxAttemptSlider_ValueChanged" IsSnapToTickEnabled="True" SmallChange="1"/>
+                    <Slider x:Name="maxAttemptSlider" Value="10" TickPlacement="BottomRight" TickFrequency="1" Minimum="3" Maximum="20" Width="100" AutoToolTipPlacement="TopLeft" ValueChanged="maxAttemptSlider_ValueChanged" SmallChange="1"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Border x:Name="mastermindGameBorder" Grid.Row="1" Grid.Column="2" Grid.RowSpan="6" Margin="20" Height="160" CornerRadius="20" VerticalAlignment="Top" Background="#FF6A6A6A">
+        <Border x:Name="mastermindGameBorder" Grid.Row="1" Grid.Column="2" Grid.RowSpan="6" Margin="20" Height="200" CornerRadius="20" VerticalAlignment="Top" Background="#FF6A6A6A">
             <Grid x:Name="attemptGrid">
                 <Grid.RowDefinitions>
                 </Grid.RowDefinitions>

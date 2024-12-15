@@ -21,7 +21,10 @@ namespace MastermindNewLayout_Test
         //Variabelen worden globaal geinitieerd
         string color1, color2, color3, color4;
         string chosenColor1, chosenColor2, chosenColor3, chosenColor4;
-        string attemptColor1, attemptColor2, attemptColor3, attemptColor4;
+        string attemptColor1 = "empty";
+        string attemptColor2 = "empty";
+        string attemptColor3 = "empty";
+        string attemptColor4 = "empty";
         int attempts = 0;
         int score = 100;
         int row = 0;
@@ -606,13 +609,14 @@ namespace MastermindNewLayout_Test
             int a = 0;
             bool hintGiven = false;
             Random position = new Random();
-            int p = position.Next(0, 4);
             do
             {
+                int p = position.Next(0, 4);
                 if (correctColors[p] != attemptColors[p])
                 {
                     MessageBox.Show($"Kleur {correctColors[p]} op plaats {p+1}!");
                     hintGiven = true;
+
                 }
             } while (hintGiven == false);
         }
@@ -627,7 +631,7 @@ namespace MastermindNewLayout_Test
             bool hintGiven = false;
             do
             {
-                if (correctColors[p] != attemptColors[p])
+                if (!correctColors[p].Contains(attemptColors[p]))
                 {
                     MessageBox.Show($"Je moet kleur {correctColors[p]} gebruiken!");
                     hintGiven = true;
