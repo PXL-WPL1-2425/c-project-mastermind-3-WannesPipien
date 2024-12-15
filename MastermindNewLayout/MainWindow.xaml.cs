@@ -467,29 +467,32 @@ namespace MastermindNewLayout_Test
 
                 colorEllipse.Fill = ellipseColor;
 
+                if (chosenColors[i] == correctColors[i])
+                {
+                    colorEllipse.StrokeThickness = 3;
+                    colorEllipse.Stroke = new SolidColorBrush(Colors.DarkRed);
+                    colorEllipse.ToolTip = $"Juiste kleur, juiste positie";
+                }
+                else if (correctColors.Contains(chosenColors[i]))
+                {
+                    colorEllipse.StrokeThickness = 3;
+                    colorEllipse.Stroke = new SolidColorBrush(Colors.Wheat);
+                    colorEllipse.ToolTip = $"Juiste kleur, foute positie";
+                }
+                else
+                {
+                    colorEllipse.StrokeThickness = 3;
+                    colorEllipse.Stroke = new SolidColorBrush(Colors.Transparent);
+                    colorEllipse.ToolTip = $"Foute kleur";
+                }
+                ToolTipService.SetInitialShowDelay(colorEllipse, 0);
+
                 AddRow();
                 Grid.SetRow(colorEllipse, row);
                 Grid.SetColumn(colorEllipse, column);
                 attemptGrid.Children.Add(colorEllipse);
                 colorEllipses.Add(colorEllipse);
                 column++;
-
-
-                if (chosenColors[i] == correctColors[i])
-                {
-                    colorEllipse.StrokeThickness = 3;
-                    colorEllipse.Stroke = new SolidColorBrush(Colors.DarkRed);
-                }
-                else if (correctColors.Contains(chosenColors[i]))
-                {
-                    colorEllipse.StrokeThickness = 3;
-                    colorEllipse.Stroke = new SolidColorBrush(Colors.Wheat);
-                }
-                else
-                {
-                    colorEllipse.StrokeThickness = 3;
-                    colorEllipse.Stroke = new SolidColorBrush(Colors.Transparent);
-                }
             }
             row++;
         }
@@ -523,6 +526,8 @@ namespace MastermindNewLayout_Test
             {
                 timer.Stop();
                 controlButton.IsEnabled = false;
+                smallHintButton.IsEnabled = false;
+                bigHintHutton.IsEnabled = false;
                 MessageBoxResult antwoord = MessageBox.Show($"Score: {score}\nAantal pogingen: {attempts}!\nNu is {playerNames[i+1]} aan de beurt", $"{playerNames[i]}!");
                 highScores[i] = $"{answer} - {attempts} pogingen - {score}/100";
                 highScoresList.AppendLine(highScores[i]);
@@ -532,6 +537,8 @@ namespace MastermindNewLayout_Test
             {
                 timer.Stop();
                 controlButton.IsEnabled = false;
+                smallHintButton.IsEnabled = false;
+                bigHintHutton.IsEnabled = false;
                 MessageBoxResult antwoord = MessageBox.Show($"Score: {score}\nAantal pogingen: {attempts}!\nAlle spelers hebben hun beur gedaan", $"{playerNames[i]}!");
                 highScores[i] = $"{answer} - {attempts} pogingen - {score}/100";
                 highScoresList.AppendLine(highScores[i]);
