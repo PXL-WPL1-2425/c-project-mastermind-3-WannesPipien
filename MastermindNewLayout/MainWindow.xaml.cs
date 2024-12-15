@@ -513,20 +513,39 @@ namespace MastermindNewLayout_Test
 
         private void WinOrLose(List<string> chosenColors, List<string> correctColors)
         {
-            if (chosenColors.SequenceEqual(correctColors))
+
+            if (chosenColors.SequenceEqual(correctColors) && (playerNames.Count - 1) > i)
             {
                 timer.Stop();
                 controlButton.IsEnabled = false;
-                MessageBoxResult antwoord = MessageBox.Show($"Score: {score}\nAantal pogingen: {attempts}!\nWilt u noch eens proberen?", "Gewonnen!");
+                MessageBoxResult antwoord = MessageBox.Show($"Score: {score}\nAantal pogingen: {attempts}!\nNu is {playerNames[i+1]} aan de beurt", $"{playerNames[i]}!");
                 highScores[i] = $"{answer} - {attempts} pogingen - {score}/100";
                 highScoresList.AppendLine(highScores[i]);
                 i++;
             }
-            else if (attempts >= maxAttempts)
+            else if (chosenColors.SequenceEqual(correctColors) && (playerNames.Count - 1) == i)
             {
                 timer.Stop();
                 controlButton.IsEnabled = false;
-                MessageBoxResult antwoord = MessageBox.Show("Helaas u pogingen zijn op.\nWilt u noch eens proberen?", "Verloren");
+                MessageBoxResult antwoord = MessageBox.Show($"Score: {score}\nAantal pogingen: {attempts}!\nAlle spelers hebben hun beur gedaan", $"{playerNames[i]}!");
+                highScores[i] = $"{answer} - {attempts} pogingen - {score}/100";
+                highScoresList.AppendLine(highScores[i]);
+                i++;
+            }
+            else if (attempts >= maxAttempts && (playerNames.Count - 1) > i)
+            {
+                timer.Stop();
+                controlButton.IsEnabled = false;
+                MessageBoxResult antwoord = MessageBox.Show($"Helaas u pogingen zijn op.\nNu is {playerNames[i+1]} aan de beurt", $"{playerNames[i]}!");
+                highScores[i] = $"{answer} - {attempts} pogingen - {score}/100";
+                highScoresList.AppendLine(highScores[i]);
+                i++;
+            }
+            else if (attempts >= maxAttempts && (playerNames.Count - 1 ) == i)
+            {
+                timer.Stop();
+                controlButton.IsEnabled = false;
+                MessageBoxResult antwoord = MessageBox.Show($"Helaas u pogingen zijn op.\nAllse spelers hebben hun beurt gedaan", $"{playerNames[i]}!");
                 highScores[i] = $"{answer} - {attempts} pogingen - {score}/100";
                 highScoresList.AppendLine(highScores[i]);
                 i++;
@@ -587,7 +606,6 @@ namespace MastermindNewLayout_Test
 
         private void newGameMenu_Click(object sender, RoutedEventArgs e)
         {
-            StartGame();
             GameReset();
         }
 
