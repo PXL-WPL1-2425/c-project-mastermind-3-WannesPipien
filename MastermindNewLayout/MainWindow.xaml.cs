@@ -21,6 +21,7 @@ namespace MastermindNewLayout_Test
         //Variabelen worden globaal geinitieerd
         string color1, color2, color3, color4;
         string chosenColor1, chosenColor2, chosenColor3, chosenColor4;
+        string attemptColor1, attemptColor2, attemptColor3, attemptColor4;
         int attempts = 0;
         int score = 100;
         int row = 0;
@@ -361,7 +362,11 @@ namespace MastermindNewLayout_Test
             }
 
 
-            List<string> chosenColors = new List<string> { chosenColor1, chosenColor2, chosenColor3, chosenColor4 }; 
+            List<string> chosenColors = new List<string> { chosenColor1, chosenColor2, chosenColor3, chosenColor4 };
+            attemptColor1 = chosenColor1;
+            attemptColor2 = chosenColor2;
+            attemptColor3 = chosenColor3;
+            attemptColor4 = chosenColor4;
             List<string> correctColors = new List<string> { color1, color2, color3, color4 };
 
             this.Title = $"Poging: {attempts}";
@@ -569,6 +574,10 @@ namespace MastermindNewLayout_Test
         private void maxAttemptSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             maxAttempts = maxAttemptSlider.Value;
+            if(mastermindGameBorder != null)
+            {
+                mastermindGameBorder.Height = (maxAttempts * 20);
+            }
         }
 
         private void RemoveAttemptEllipse()
@@ -579,6 +588,45 @@ namespace MastermindNewLayout_Test
             }
 
             colorEllipses.Clear();
+        }
+
+        private void bigHintHutton_Click(object sender, RoutedEventArgs e)
+        {
+            score -= 25;
+            scoreTextBox.Text = score.ToString();
+            List<string> correctColors = new List<string> { color1, color2, color3, color4 };
+            List<string> attemptColors = new List<string> { attemptColor1, attemptColor2, attemptColor3, attemptColor4 };
+            int a = 0;
+            bool hintGiven = false;
+            Random position = new Random();
+            int p = position.Next(0, 4);
+            do
+            {
+                if (correctColors[p] != attemptColors[p])
+                {
+                    MessageBox.Show($"Kleur {correctColors[p]} op plaats {p+1}!");
+                    hintGiven = true;
+                }
+            } while (hintGiven == false);
+        }
+
+        private void smallHintButton_Click(object sender, RoutedEventArgs e)
+        {
+            score -= 15;
+            scoreTextBox.Text = score.ToString();
+            List<string> correctColors = new List<string> { color1, color2, color3, color4 };
+            List<string> attemptColors = new List<string> { attemptColor1, attemptColor2, attemptColor3, attemptColor4 };
+            int p = 0;
+            bool hintGiven = false;
+            do
+            {
+                if (correctColors[p] != attemptColors[p])
+                {
+                    MessageBox.Show($"Je moet kleur {correctColors[p]} gebruiken!");
+                    hintGiven = true;
+                }
+                p++;
+            } while (hintGiven == false);
         }
 
         private void ResetChoiseEllipse()

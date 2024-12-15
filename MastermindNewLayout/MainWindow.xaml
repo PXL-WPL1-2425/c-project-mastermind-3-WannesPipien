@@ -61,6 +61,10 @@
                 </RadialGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
+        <Button x:Name="smallHintButton" Width="100" Margin="10" Content="small hint" Background="Black" Foreground="White" FontWeight="Bold" FontSize="14"
+            Grid.Column="1" Grid.Row="4" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Right" Click="smallHintButton_Click"/>
+        <Button x:Name="bigHintHutton" Width="100" Margin="10" Content="big hint" Background="Black" Foreground="White" FontWeight="Bold" FontSize="14"
+            Grid.Column="1" Grid.Row="4" BorderBrush="White" BorderThickness="3" HorizontalAlignment="Left" Click="bigHintHutton_Click"/>
         <Button x:Name="controlButton" Width="150" Content="Controleer code" Background="Black" Foreground="White" FontWeight="Bold" FontSize="14"
             Grid.Column="1" Grid.Row="4" BorderBrush="White" BorderThickness="3" Click="controlButton_Click"/>
         <TextBox x:Name="scoreTextBox" IsEnabled="False" Text="100"
@@ -80,21 +84,23 @@
             </MenuItem>
             <MenuItem x:Name="settingsMenu" Header="Instellingen">
                 <MenuItem x:Name="attemptsAmountmenu" Header="Aantal pogingen">
-                    <Slider x:Name="maxAttemptSlider" Value="10" TickPlacement="BottomRight" TickFrequency="1" Minimum="3" Maximum="20" Width="100" AutoToolTipPlacement="TopLeft" ValueChanged="maxAttemptSlider_ValueChanged"/>
+                    <Slider x:Name="maxAttemptSlider" Value="10" TickPlacement="BottomRight" TickFrequency="1" Minimum="3" Maximum="20" Width="100" AutoToolTipPlacement="TopLeft" ValueChanged="maxAttemptSlider_ValueChanged" IsSnapToTickEnabled="True" SmallChange="1"/>
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Grid x:Name="attemptGrid" Grid.Row="1" Grid.Column="2" Grid.RowSpan="6">
-            <Grid.RowDefinitions>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-        </Grid>
+        <Border x:Name="mastermindGameBorder" Grid.Row="1" Grid.Column="2" Grid.RowSpan="6" Margin="20" Height="160" CornerRadius="20" VerticalAlignment="Top" Background="#FF6A6A6A">
+            <Grid x:Name="attemptGrid">
+                <Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
