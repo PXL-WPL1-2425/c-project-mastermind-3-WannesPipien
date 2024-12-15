@@ -62,11 +62,13 @@
             </Ellipse.Fill>
         </Ellipse>
         <Button x:Name="controlButton" Width="150" Content="Controleer code" Background="Black" Foreground="White" FontWeight="Bold" FontSize="14"
-            Grid.Column="1" Grid.Row="3" BorderBrush="White" BorderThickness="3" Click="controlButton_Click"/>
+            Grid.Column="1" Grid.Row="4" BorderBrush="White" BorderThickness="3" Click="controlButton_Click"/>
         <TextBox x:Name="scoreTextBox" IsEnabled="False" Text="100"
-            Grid.Row="2" Grid.Column="1" Margin="5" TextAlignment="Center" FontWeight="Bold" FontSize="18" Width="150"/>
+            Grid.Row="5" Grid.Column="1" Margin="5" TextAlignment="Center" FontWeight="Bold" FontSize="18" Width="150"/>
         <TextBox x:Name="timerTextBox" Width="150" IsEnabled="False" Text="Seconden" TextAlignment="Center" FontSize="26" FontStyle="Italic"
-            Grid.Column="1" Grid.Row="1" Foreground="White" Background="Black"/>
+            Grid.Column="1" Grid.Row="3" Foreground="White" Background="Black"/>
+        <TextBox x:Name="currentPLayerTextBox" Width="150" IsEnabled="False" TextAlignment="Center"
+            Grid.Column="1" Grid.Row="2" Foreground="White" Background="Black"/>
         <TextBox x:Name="correctCodeTextBox" Visibility="Hidden" IsEnabled="False" TextAlignment="Center"
             Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="4"/>
         <Menu x:Name="GameMenu" Height="20" VerticalAlignment="Top"

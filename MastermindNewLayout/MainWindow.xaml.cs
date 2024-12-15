@@ -25,7 +25,8 @@ namespace MastermindNewLayout_Test
         int score = 100;
         int row = 0;
         int column;
-        int n = 1;
+        //i word gebruikt om te kijken welke speler aan de beurt is
+        int i = 0;
         string answer;
         int chosenColor1Index = 0;
         int chosenColor2Index = 0;
@@ -48,6 +49,7 @@ namespace MastermindNewLayout_Test
         
         private void GameReset()
         {
+            currentPLayerTextBox.Text = playerNames[i];
             controlButton.IsEnabled = true;
 
             attemptRows.Clear();
@@ -61,7 +63,6 @@ namespace MastermindNewLayout_Test
             attempts = 0;
             score = 100;
             row = 0;
-            n = 1;
             this.Title = $"Pogingen: 0";
             scoreTextBox.Text = "100";
             timerTextBox.Text = "0";
@@ -413,8 +414,8 @@ namespace MastermindNewLayout_Test
             {
                 Ellipse colorEllipse = new Ellipse
                 {
-                    Width = 25,
-                    Height = 25
+                    Width = 18,
+                    Height = 18
                 };
 
                 RadialGradientBrush ellipseColor = new RadialGradientBrush
@@ -509,7 +510,6 @@ namespace MastermindNewLayout_Test
             scoreTextBox.Text = score.ToString();
         }
 
-        int i = 0;
 
         private void WinOrLose(List<string> chosenColors, List<string> correctColors)
         {
@@ -606,12 +606,20 @@ namespace MastermindNewLayout_Test
 
         private void newGameMenu_Click(object sender, RoutedEventArgs e)
         {
-            GameReset();
+            if (playerNames.Count == i)
+            {
+                MessageBox.Show("Alle spelers hebben hun beurt gedaan, u kunt geen nieuw spel meet starten!", "Spel gedaan", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                GameReset();
+            }
         }
 
 
         private void StartGame()
         {
+            int n = 1;
             answer = Interaction.InputBox("Geef u naam: ", $"Speler {n} naam.");
             if (string.IsNullOrEmpty(answer))
             {
@@ -629,6 +637,8 @@ namespace MastermindNewLayout_Test
                 }
             }
 
+            currentPLayerTextBox.Text = playerNames[0];
+
         }
 
         private void highScoreMenu_Click(object sender, RoutedEventArgs e)
@@ -640,7 +650,7 @@ namespace MastermindNewLayout_Test
         {
             RowDefinition attemptRow = new RowDefinition
             {
-                Height = new GridLength(30)
+                Height = new GridLength(20)
             };
             attemptGrid.RowDefinitions.Add(attemptRow);
             attemptRows.Add(attemptRow);
